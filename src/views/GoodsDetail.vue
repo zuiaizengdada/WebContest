@@ -1,5 +1,6 @@
 <template>
-  <div class="page-goodDetail container-fluid" id="GoodsDetail">
+  <div class="page-goodDetail container-fluid"
+       id="GoodsDetail">
     <div class="container">
       <!-- 商品详情头部 -->
       <TopBar></TopBar>
@@ -16,27 +17,25 @@
         <!-- 商品详情 -->
         <div class="goodsDetailBox row">
           <!-- 图片轮播 -->
-          <div id="img-carousel" class="carousel" data-ride="carousel">
+          <div id="img-carousel"
+               class="carousel"
+               data-ride="carousel">
             <ol class="carousel-indicators">
-              <li
-                data-target="#img-carousel"
-                data-slide-to="0"
-                class="active"
-              ></li>
-              <li data-target="#img-carousel" data-slide-to="1"></li>
-              <li data-target="#img-carousel" data-slide-to="2"></li>
+              <li data-target="#img-carousel"
+                  data-slide-to="0"
+                  class="active"></li>
+              <li data-target="#img-carousel"
+                  data-slide-to="1"></li>
+              <li data-target="#img-carousel"
+                  data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-              <div
-                :class="{ 'carouse-item': true, active: index == 1 }"
-                v-for="(item, index) in goodsDetailData.productImageList"
-                :key="index"
-              >
-                <img
-                  :src="'http://39.101.160.5:8080/Shopping' + item.defaultImg"
-                  class="d-block"
-                  alt="..."
-                />
+              <div :class="{ 'carouse-item': true, active: index == 1 }"
+                   v-for="(item, index) in goodsDetailData.productImageList"
+                   :key="index">
+                <img :src="'http://39.101.160.5:8080/Shopping' + item.defaultImg"
+                     class="d-block"
+                     alt="..." />
               </div>
             </div>
           </div>
@@ -56,21 +55,19 @@
               <!-- 新价格 -->
               <div class="newPrice">￥{{ goodsDetailData.shopPrice }}</div>
               <!-- //新价格 -->
-
+              <div id="qrcode"
+                   ref="qrcode"></div>
               <!-- 收藏 -->
-              <div class="collection" @click="addwishList(productId, userId)">
-                <svg
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 16 16"
-                  class="bi bi-heart-fill"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                  />
+              <div class="collection"
+                   @click="addwishList(productId, userId)">
+                <svg width="1em"
+                     height="1em"
+                     viewBox="0 0 16 16"
+                     class="bi bi-heart-fill"
+                     fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                 </svg>
               </div>
               <!-- //收藏 -->
@@ -88,22 +85,25 @@
             <div class="goods-count flex-row-centerX justify-content-around">
               <span class="title">购买数量</span>
               <div class="counter">
-                <button class="sub" @click="sub">-</button>
+                <button class="sub"
+                        @click="sub">-</button>
                 <span class="num">{{ count }}</span>
-                <button class="add" @click="add">+</button>
+                <button class="add"
+                        @click="add">+</button>
               </div>
             </div>
             <!-- //数量 -->
 
             <!-- 商品操作 -->
             <div class="goods-option flex-row-centerX justify-content-center">
-              <button
-                class="addCart text-center"
-                @click="addProductListItem(userId, productId, count)"
-              >
+              <button class="addCart text-center"
+                      @click="addProductListItem(userId, productId, count)">
                 加入购物车
               </button>
-              <button class="buyNow text-center">立即购买</button>
+              <button class="buyNow text-center"
+                      @click="toCart()">
+                立即购买
+              </button>
             </div>
             <!-- //商品操作 -->
           </div>
@@ -114,21 +114,17 @@
             <div class="goods-hot-title">热销商品</div>
             <!-- 商品展示 -->
             <ul class="list-unstyled goods-thumbnails">
-              <li
-                class="media"
-                v-for="(item, index) in HotGoodsData"
-                :key="index"
-              >
-                <img
-                  :src="'http://39.101.160.5:8080/Shopping' + item.defaultImg"
-                  alt="..."
-                />
+              <li class="media"
+                  v-for="(item, index) in HotGoodsData"
+                  :key="index">
+                <img :src="'http://39.101.160.5:8080/Shopping' + item.defaultImg"
+                     alt="..." />
                 <div class="media-body">
                   <h5 class="mt-0 mb-3">
                     {{ item.name }}
                   </h5>
-                  <span class="newPrice">￥{{ item.shopPrice }}</span>
-                  <del class="oldPrice">市场价￥￥{{ item.price }}</del>
+                  <span class="newPrice">￥{{ item.shopPrice }}市场价</span>
+                  <del class="oldPrice">￥{{ item.price }}</del>
                 </div>
               </li>
             </ul>
@@ -139,53 +135,47 @@
         <!-- //商品详情 -->
 
         <!-- 商品tab栏 -->
-        <ul class="nav nav-tabs" id="goodsTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <a
-              class="nav-link active"
-              id="desc-tab"
-              data-toggle="tab"
-              href="#desc"
-              role="tab"
-              aria-controls="desc-tab"
-              aria-selected="true"
-              >商品描述</a
-            >
+        <ul class="nav nav-tabs"
+            id="goodsTab"
+            role="tablist">
+          <li class="nav-item"
+              role="presentation">
+            <a class="nav-link active"
+               id="desc-tab"
+               data-toggle="tab"
+               href="#desc"
+               role="tab"
+               aria-controls="desc-tab"
+               aria-selected="true">商品描述</a>
           </li>
-          <li class="nav-item" role="presentation">
-            <a
-              class="nav-link"
-              id="comment-tab"
-              data-toggle="tab"
-              href="#comment"
-              role="tab"
-              aria-controls="comment-tab"
-              aria-selected="false"
-              >商品评论({{ goodsDetailComment.length }})</a
-            >
+          <li class="nav-item"
+              role="presentation">
+            <a class="nav-link"
+               id="comment-tab"
+               data-toggle="tab"
+               href="#comment"
+               role="tab"
+               aria-controls="comment-tab"
+               aria-selected="false">商品评论({{ goodsDetailComment.length }})</a>
           </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
-          <div
-            class="tab-pane fade show active"
-            id="desc"
-            role="tabpanel"
-            aria-labelledby="desc-tab"
-          >
+        <div class="tab-content"
+             id="myTabContent">
+          <div class="tab-pane fade show active"
+               id="desc"
+               role="tabpanel"
+               aria-labelledby="desc-tab">
             {{ goodsDetailData.explain }}
           </div>
-          <div
-            class="tab-pane fade"
-            id="comment"
-            role="tabpanel"
-            aria-labelledby="comment-tab"
-          >
-            <div
-              v-for="(item, index) in goodsDetailComment"
-              :key="index"
-              class="comment-box"
-            >
-              <div style="display: flex" class="info">
+          <div class="tab-pane fade"
+               id="comment"
+               role="tabpanel"
+               aria-labelledby="comment-tab">
+            <div v-for="(item, index) in goodsDetailComment"
+                 :key="index"
+                 class="comment-box">
+              <div style="display: flex"
+                   class="info">
                 <div class="username">{{ item.user.nickname }}</div>
                 <div class="datetime">{{ item.createTime }}</div>
               </div>
@@ -214,13 +204,13 @@ import {
   getGoodsDetailComment,
   getHotGoodsData,
 } from "@/network/GoodsDetail";
-
 import { addwishList } from "@/network/PersonalCenter";
-
 import { addProductListItem } from "@/network/GoodsCart";
+
+import QRCode from 'qrcodejs2'
 export default {
   name: "GoodsDetail",
-  data() {
+  data () {
     return {
       // 商品数量
       count: 1,
@@ -241,58 +231,85 @@ export default {
     TopBar,
     Footer,
   },
-  created() {
+  created () {
     this.getId();
     this.getGoodsDetail(this.productId);
     this.getGoodsDetailComment(this.productId);
     this.getHotGoodsData(this.productId);
+    this.creatQrCode(window.location.href);
+
   },
   methods: {
+    // 生成二维码
+    creatQrCode (url) {
+      // eslint-disable-next-line no-unused-vars
+      var URL = url
+      setTimeout(() => {
+        var qrcode = new QRCode('qrcode', {
+          text: 'xxxx',
+          width: 100,
+          height: 100,
+          colorDark: '#000000',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.H
+        })
+        qrcode.clear() //清除二维码 
+        qrcode.makeCode(URL) //生成另一个新的二维码
+      }, 500)
+
+    },
     // 获取id
-    getId() {
+    getId () {
       let id = this.$route.query.productId;
       this.productId = id;
     },
     // 商品详情数据
-    getGoodsDetail(productId) {
+    getGoodsDetail (productId) {
       getGoodsDetail(productId).then((res) => {
         this.goodsDetailData = res.data;
+        console.log(this.goodsDetailData)
       });
     },
 
     // 商品评论数据
-    getGoodsDetailComment(productId) {
+    getGoodsDetailComment (productId) {
       getGoodsDetailComment(productId).then((res) => {
         this.goodsDetailComment = res.data;
       });
     },
 
     // 热销商品数据
-    getHotGoodsData(productId) {
+    getHotGoodsData (productId) {
       getHotGoodsData(productId).then((res) => {
         this.HotGoodsData = res.data;
       });
     },
-    add() {
+    add () {
       this.count++;
     },
 
-    sub() {
+    sub () {
       if (this.count == 0) {
         this.count = 1;
       }
       this.count--;
     },
     // 添加购物车
-    addProductListItem(userId, productId, count) {
+    addProductListItem (userId, productId, count) {
       addProductListItem(userId, productId, count).then(() => {
         alert("添加购物车成功");
       });
     },
     // 商品收藏
-    addwishList(productId, userId) {
-      addwishList(productId, userId).then((res) => {
-        console.log(res);
+    addwishList (productId, userId) {
+      addwishList(productId, userId).then(() => {
+        alert("收藏成功");
+      });
+    },
+    // 跳转购物车页面
+    toCart () {
+      this.$router.push({
+        path: "/goodscart",
       });
     },
   },

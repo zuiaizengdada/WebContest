@@ -2,31 +2,31 @@ const webpack = require("webpack");
 
 module.exports = {
 
-    configureWebpack: {
+  configureWebpack: {
 
-        plugins: [
+    plugins: [
 
-            new webpack.ProvidePlugin({
+      new webpack.ProvidePlugin({
 
-                $: 'jquery',
+        $: 'jquery',
 
-                jQuery: 'jquery',
+        jQuery: 'jquery',
 
-                'window.jQuery': 'jquery',
+        'window.jQuery': 'jquery',
 
-                Popper: ['popper.js', 'default']
+        Popper: ['popper.js', 'default']
 
-            })
+      })
 
-        ],
-        devServer: {
-            hot: true,
-            open: true,
-            port: 8081,
-            host: "127.0.0.1"
-        },
+    ],
+    devServer: {
+      hot: true,
+      open: true,
+      port: 8081,
+      host: "127.0.0.1"
+    },
 
 
-    }
+  }
 
 }

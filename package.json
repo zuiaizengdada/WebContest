@@ -12,10 +12,11 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
-    "element-ui": "^2.4.5",
+    "element-ui": "^2.14.1",
     "font-awesome": "^4.7.0",
     "jQuery": "^1.7.4",
     "popper.js": "^1.16.1",
+    "qrcodejs2": "0.0.2",
     "vue": "^2.6.11",
     "vue-bus": "^1.2.1",
     "vue-router": "^3.2.0"

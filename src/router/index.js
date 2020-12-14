@@ -7,6 +7,7 @@ const GoodsCart = () => import('@/views/GoodsCart')
 const Login = () => import('@/views/Login')
 const Register = () => import('@/views/Register')
 const PersonalCenter = () => import('@/views/PersonalCenter')
+const OrderPayment = () => import('@/views/OrderPayment')
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -36,6 +37,10 @@ const routes = [{
     name: 'personalcenter',
     path: '/personalcenter',
     component: PersonalCenter
+  }, {
+    name: 'orderpayment',
+    path: '/orderpayment',
+    component: OrderPayment
   }
 ]
 

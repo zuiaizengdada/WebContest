@@ -10,34 +10,38 @@
           </li>
           <li>
             <div class="dropdown">
-              <a
-                class="btn dropdown-toggle"
-                role="button"
-                id="dropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
+              <a class="btn dropdown-toggle"
+                 role="button"
+                 id="dropdownMenuLink"
+                 data-toggle="dropdown"
+                 aria-haspopup="true"
+                 aria-expanded="false">
                 会员中心
               </a>
 
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#" @click.prevent="toorder"
-                  >历史订单</a
-                >
-                <a class="dropdown-item" href="#" @click.prevent="tocollection"
-                  >收藏夹</a
-                >
-                <a class="dropdown-item" href="#" @click.prevent="tocontact"
-                  >常用联系人</a
-                >
-                <a class="dropdown-item" href="#" @click.prevent="tosetting"
-                  >个人设置</a
-                >
-                <a class="dropdown-item" href="#" @click.prevent="torecharge"
-                  >充值</a
-                >
-                <a class="dropdown-item" href="#" @click.prevent="exit">退出</a>
+              <div class="dropdown-menu"
+                   aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item"
+                   href="#"
+                   @click.prevent="toorder">历史订单</a>
+                <a class="dropdown-item"
+                   href="#"
+                   @click.prevent="tocollection">收藏夹</a>
+                <a class="dropdown-item"
+                   href="#"
+                   @click.prevent="tocontact">常用联系人</a>
+                <a class="dropdown-item"
+                   href="#"
+                   @click.prevent="tosetting">个人设置</a>
+                <a class="dropdown-item"
+                   href="#"
+                   @click.prevent="torecharge">充值</a>
+                <a class="dropdown-item"
+                   href="#"
+                   @click.prevent="tofootprint">我的足迹</a>
+                <a class="dropdown-item"
+                   href="#"
+                   @click.prevent="exit">退出</a>
               </div>
             </div>
           </li>
@@ -54,40 +58,38 @@
         <!-- logo -->
         <div class="logo">
           <a href="#">
-            <img src="@/assets/images/logo.gif" alt="" />
+            <img src="@/assets/images/logo.gif"
+                 alt="" />
           </a>
         </div>
         <!-- //logo -->
 
         <!-- 搜索框 -->
         <div class="search input-group flex-row-centerX">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="请输入查询关键字"
-            aria-label="Recipient's username"
-            aria-describedby="button-addon2"
-          />
+          <input type="text"
+                 class="form-control"
+                 placeholder="请输入查询关键字"
+                 aria-label="Recipient's username"
+                 aria-describedby="button-addon2" />
           <div class="input-group-append">
-            <button class="btn" type="button" id="button-addon2">搜索</button>
+            <button class="btn"
+                    type="button"
+                    id="button-addon2">搜索</button>
           </div>
         </div>
         <!-- //搜索框 -->
 
         <!-- 购物车 -->
-        <div class="shopping-cart" @click="toGoodsCart">
-          <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 16 16"
-            class="bi bi-cart3"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
-            />
+        <div class="shopping-cart"
+             @click="toGoodsCart">
+          <svg width="1em"
+               height="1em"
+               viewBox="0 0 16 16"
+               class="bi bi-cart3"
+               fill="currentColor"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
           </svg>
           <span class="badge badge-danger">{{ productCount }}</span>
         </div>
@@ -103,71 +105,80 @@
 import { getNickName } from "@/network/TopBar";
 export default {
   name: "TopBar",
-  data() {
+  data () {
     return {
       nickname: "",
-      productCount: sessionStorage.getItem("productCount"),
     };
   },
 
   methods: {
     // 跳转购物车页面
-    toGoodsCart() {
+    toGoodsCart () {
       this.$router.push({
         path: "/goodscart",
       });
     },
     //跳转历史订单的不同栏目
 
-    toorder() {
+    toorder () {
       this.$router.push({
         name: "personalcenter",
         params: { curr: 0 },
       });
     },
-    tocollection() {
+    tocollection () {
       this.$router.push({
         name: "personalcenter",
         params: { curr: 1 },
       });
     },
-    tocontact() {
+    tocontact () {
       this.$router.push({
         name: "personalcenter",
         params: { curr: 2 },
       });
     },
-    tosetting() {
+    tosetting () {
       this.$router.push({
         name: "personalcenter",
         params: { curr: 3 },
       });
     },
-    torecharge() {
+    torecharge () {
       this.$router.push({
         name: "personalcenter",
         params: { curr: 4 },
       });
     },
-
+    tofootprint () {
+      this.$router.push({
+        name: "personalcenter",
+        params: { curr: 5 },
+      });
+    },
     // 退出登录
-    exit() {
+    exit () {
       sessionStorage.clear();
       this.$router.push({
         path: "/login",
       });
     },
     // 获取昵称
-    getNickName(userId) {
+    getNickName (userId) {
       getNickName(userId).then((res) => {
         let { data: userData } = res;
         this.nickname = userData.nickname;
       });
     },
   },
-  created() {
+  created () {
     this.getNickName(Number(sessionStorage.getItem("token")));
   },
+  computed: {
+    productCount () {
+      return sessionStorage.getItem("productCount")
+    }
+  }
 };
 </script>
 

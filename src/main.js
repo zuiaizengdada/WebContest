@@ -4,10 +4,11 @@ import Vue from 'vue'
 import './plugins/bootstrap-vue'
 import App from './App.vue'
 import router from './router'
-
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import VueBus from 'vue-bus'; //中央事件总线
 
-
+Vue.use(ElementUI);
 Vue.use(VueBus);
 
 import 'bootstrap/dist/css/bootstrap.min.css'

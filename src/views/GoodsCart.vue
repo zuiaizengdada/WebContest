@@ -1,5 +1,6 @@
 <template>
-  <div class="page-goodCart container-fluid" id="GoodsCart">
+  <div class="page-goodCart container-fluid"
+       id="GoodsCart">
     <div class="container">
       <!-- 购物车头部 -->
       <TopBar></TopBar>
@@ -12,10 +13,12 @@
           <span>我的购物车</span>
 
           <!-- 面包屑导航 -->
-          <nav aria-label="breadcrumb" id="nav">
+          <nav aria-label="breadcrumb"
+               id="nav">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/">首页</a></li>
-              <li class="breadcrumb-item active" aria-current="page">购物车</li>
+              <li class="breadcrumb-item active"
+                  aria-current="page">购物车</li>
             </ol>
           </nav>
           <!-- //面包屑导航 -->
@@ -40,30 +43,24 @@
                 <!--eslint-disable-next-line-->
                 <tr v-for="item in orderItemList.productList">
                   <td>
-                    <img
-                      :src="
+                    <img :src="
                         'http://39.101.160.5:8080/Shopping' + item.defaultImg
                       "
-                      alt=""
-                    />
+                         alt="" />
                     <span>{{ item.name }}</span>
                   </td>
                   <td>
                     <span>{{ orderItemList.quantity }}x￥{{ item.price }}</span>
                   </td>
                   <td>
-                    <span
-                      >￥{{
+                    <span>￥{{
                         parseInt(orderItemList.quantity) * parseInt(item.price)
-                      }}</span
-                    >
+                      }}</span>
                   </td>
                   <td>
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-danger del"
-                      @click="removeProductListItem(userId, orderItemList.id)"
-                    >
+                    <button type="button"
+                            class="btn btn-sm btn-danger del"
+                            @click="removeProductListItem(userId, orderItemList.id)">
                       删除
                     </button>
                   </td>
@@ -71,15 +68,15 @@
               </template>
             </tbody>
             <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-sm btn-danger"
-                id="clearAll"
-                @click="removeAllProductList(userId)"
-              >
+              <button type="button"
+                      class="btn btn-sm btn-danger"
+                      id="clearAll"
+                      @click="removeAllProductList(userId)">
                 清空购物车
               </button>
-              <button type="button" class="btn btn-sm btn-success" id="update">
+              <button type="button"
+                      class="btn btn-sm btn-success"
+                      id="update">
                 更新购物车
               </button>
             </div>
@@ -104,7 +101,11 @@
                 <div id="big">￥{{ price }}</div>
               </div>
             </div>
-            <button type="button" class="btn btn-success">立即支付</button>
+            <button type="button"
+                    class="btn btn-success"
+                    @click="toOrderPayment(userId, GoodsCartList)">
+              立即支付
+            </button>
           </div>
           <!-- //商品结算 -->
         </div>
@@ -128,7 +129,7 @@ import {
   removeAllProductList,
 } from "@/network/GoodsCart";
 export default {
-  data() {
+  data () {
     return {
       // 用户id
       userId: sessionStorage.getItem("userId"),
@@ -141,37 +142,52 @@ export default {
     TopBar,
     Footer,
   },
-  created() {
+  created () {
     this.getAllProductList(this.userId);
   },
   methods: {
     // 获取购物车商品列表
-    getAllProductList(userId) {
+    getAllProductList (userId) {
       getAllProductList(userId).then((res) => {
         let { data: List } = res;
         this.GoodsCartList = List.orderItemList;
-        console.log(this.GoodsCartList);
       });
     },
 
     // 移除购物车子项
-    removeProductListItem(userId, id) {
+    removeProductListItem (userId, id) {
       removeProductListItem(userId, id).then(() => {
         alert("移除成功");
         this.getAllProductList(userId);
       });
     },
 
-    removeAllProductList(userId) {
+    // 清空购物车
+    removeAllProductList (userId) {
       removeAllProductList(userId).then(() => {
         this.getAllProductList(userId);
         alert("清空购物车成功");
       });
     },
+
+    // 跳转订单支付界面
+    toOrderPayment (userId, GoodsCartList) {
+      if (GoodsCartList.length == 0) {
+        alert("请先添加购物车")
+        return false
+      }
+      this.$router.push({
+        name: "orderpayment",
+        params: {
+          userId: userId,
+          GoodsCartList: GoodsCartList,
+        },
+      });
+    },
   },
   computed: {
     // 购物车商品总价
-    price() {
+    price () {
       let price = this.GoodsCartList.reduce((acc, cur) => {
         return acc + cur.price * cur.quantity;
       }, 0);
@@ -194,10 +210,9 @@ export default {
   padding-left: 30px;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-}
-.container main .cart-title {
   justify-content: space-between;
 }
+
 #nav {
   font-size: 10px;
 }
@@ -217,17 +232,11 @@ export default {
 .container main .cart-list .table {
   flex: 3;
 }
-.container main .cart-list .table thead {
-}
-.container main .cart-list .table thead tr {
-}
+
 .container main .cart-list .table thead tr th {
   padding: 0.65rem;
 }
-.container main .cart-list .table tbody {
-}
-.container main .cart-list .table tbody tr {
-}
+
 .container main .cart-list .table tbody tr td:not(:first-child) {
   line-height: 60px;
 }
@@ -236,8 +245,7 @@ export default {
   height: 50px;
   vertical-align: middle;
 }
-.container main .cart-list .table tbody tr td span {
-}
+
 .container main .cart-list .settlement {
   flex: 1;
 
